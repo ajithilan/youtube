@@ -3,13 +3,23 @@ body{
     font-family: 'Roboto', sans-serif;
     height: 1500px;
 }
-.overlay_layer{z-index:5; background-color:black; opacity: 0; width: 100%; height:inherit; position: absolute; pointer-events: none;}
+.overlay_layer{
+    z-index:5;
+    background-color:black; 
+    opacity: 0;
+    width: 100%; 
+    height:inherit; 
+    position: absolute; 
+    pointer-events: none;
+}
 
-.main{background-color:rgb(15, 15, 15);}
+.main{
+    background-color:rgb(15, 15, 15);
+}
 
 .topbox{
     position: fixed;
-    z-index: 3;
+    z-index: 1;
     display:flex;
     padding: 10px 0px 10px 80px;
     width: 100%;
@@ -45,27 +55,6 @@ body{
     width: 60%;
     position:relative;
     max-width: 550px;
-}
-.search_history{
-    position: absolute;
-    top: 44px;
-    left: 0px;
-    width: 103%;
-    height: 40px;
-    border-radius: 10px;
-    background-color: white;
-    color: black;
-    display: none;
-    align-items: center;
-}
-.highlight{
-    width: 100%;
-    font-size: 16px;
-    z-index: 5;
-}
-.highlight:hover{
-    background-color: rgb(226, 223, 223);
-    cursor:default;
 }
 .search{
     background-color: inherit;
@@ -125,16 +114,18 @@ body{
 
 .recommended_tags{
     position: fixed;
-    z-index: 1;
     display: flex;
+    align-items: center;
     background-color: inherit;
     width: 100%;
     height: 54px;
-    align-items: center;
     margin-top: 60px;
+    z-index: 1;
 }
 .left{
-    display: none;
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
     left: 240px;
     width: 50px;
     height: 40px;
@@ -142,6 +133,7 @@ body{
     box-shadow:20px 0px 10px 0px rgb(15,15,15);
 }
 .right{
+    position: relative;
     display: flex;
     right: 0px;
     justify-content: end;
@@ -151,6 +143,7 @@ body{
     box-shadow:-20px 0px 10px 0px rgb(15,15,15);
 }
 #move_left_button{
+    margin-left:5px;
     display: none;
 }
 #move_right_button{
@@ -175,18 +168,11 @@ body{
     background-color:rgb(44, 44, 44);
 }
 
-.navibar{
-    position: fixed;
-    z-index: 3;
-    display:flex;
-    background-color:inherit;
-    width: 80px;
-    height: 100%;
-    flex-direction: column;
-    align-items: center;
-}
 .expand_navibar{
-    position: relative;
+    position: fixed;
+    top: 10px;
+    left : 20px;
+    z-index: 2;
     color: white;
     align-items: center;
     background-color: inherit;
@@ -196,21 +182,34 @@ body{
     display: flex;
     justify-content: center;
 }
+.navibar{
+    position: fixed;
+    display:flex;
+    z-index: 1;
+    background-color:inherit;
+    width: 80px;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+}
 .icon{
     position: relative;
     background-color: inherit;
     color: white;
     display:flex;
-    font-size: 11px;
-    border: none;
     flex-direction: column;
-    gap: 5px;
     align-items: center;
     justify-content: center;
+    font-size: 11px;
+    border: none;
+    gap: 5px;
     border-radius: 10px;
     width: 72px;
     height: 80px;
     white-space: nowrap;
+}
+button.icon:first-child{
+    margin-top:65px;
 }
 .icon:hover, .expand_navibar:hover, .voice:hover, .create:hover, .notifications:hover{
     background-color: rgb(44, 44, 44);
@@ -280,6 +279,30 @@ body{
     border-radius: 100px;
 }
 
+.bottom_navibar{
+    position:fixed;
+    display:none;
+    justify-content: space-around;
+    left:0px;
+    bottom: 0px;
+    width: 100%;
+    height: 60px;
+    background-color: inherit; 
+    padding: 6px;
+}
+.bottom_icon{
+    background-color: inherit;
+    color: white;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    border: none;
+    border-radius: 10px;
+    white-space: nowrap;
+}
+
 .master_container{
     position: absolute;
     display: grid;
@@ -294,7 +317,6 @@ body{
 }
 
 .video{
-    position: relative;
     color:rgba(241,241,241);
 }
 .video:hover{
@@ -378,13 +400,83 @@ body{
     white-space: nowrap;
 }
 
-@media (max-width:511px){
+/* media queries */
+
+/* mobile phone */
+
+@media (max-width:590px) and (max-device-width:767px){
     .master_container{
-        grid-template-columns: 1fr;
+        grid-template-columns: 100%;
+        padding-left:0 !important;
+        padding-right: 0;
+    }
+    .thumbnail_container,.thumbnail_image{ 
+        border-radius : 0px;
+    }
+    .views_container{display: flex; gap:6px;}
+}
+
+@media (min-width: 590px) and (max-device-width:767px){
+    .master_container{
+        grid-template-columns: 1fr 1fr;
+        padding-left:10px !important;
+        padding-right: 10px;
     }
 }
 
-@media (min-width:512px) and (max-width:887px){
+@media (max-width:767px) and (max-device-width:767px){
+    .topbox,.recommended_tags{ 
+        padding-left: 10px !important;
+        position: absolute;
+        overflow: hidden;
+    }
+    .expand_navibar{ 
+        display: none;
+    }
+    .bottom_navibar{
+        display: flex;
+    }
+    .title_button_container{
+        justify-content: space-between;
+    }
+    .action_menu{
+        visibility: visible;
+    }
+    .master_container{
+        overflow: hidden;
+    }
+}
+
+@media (max-width:791px),(max-device-width:767px){
+    .navibar{ display : none;}
+    .left{ left: 0px !important;}
+    .right{ right : 0px;}
+}
+
+@media (max-width : 767px) {
+    .voice,.create,.notifications{display:none;}
+}
+
+/* desktops */
+
+@media (max-width:720px) and (min-device-width:768px){
+    .master_container{
+        grid-template-columns: 376px !important;
+        justify-content: center;
+    }
+    .video{
+        width: 376px;
+        height: 342px;
+    }
+}
+
+@media (max-width:791px) and (min-device-width:768px){
+    .master_container, .recommended_tags{
+        padding-left: 24px !important;
+    }
+}
+
+@media (min-width:512px) and (max-width:887px) and (min-device-width:768px){
     .master_container{
         grid-template-columns: 1fr 1fr;
     }
@@ -412,6 +504,10 @@ body{
         justify-content: center;
         grid-template-columns: 360px 360px 360px 360px;
     }
+}
+
+@media(min-width:1900px){
+    .master_container{ grid-template-columns: 1fr 1fr 1fr 1fr 1fr;}
 }
 
 *::-webkit-scrollbar {

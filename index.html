@@ -22,8 +22,8 @@
                 <div class="logo"><img src="assets/youtube_icon/youtubelogo.webp" alt="youtubelogo" class="youtubelogo"></div>
                 <div class="youtube_text">Premium</div></div>
             <div class="search_container d-flex">
-            <div class="input_container"><input type="text" class="search" placeholder='Search'>
-                <div class="search_history"><div class="highlight d-block"><span class="bi-clock-history px-3"></span><span>vcodetogether</span></div></div>
+            <div class="input_container">
+                <input type="text" class="search" placeholder='Search'>
             </div>
             <button class="searchbutton bi-search text-white"></button>
             <span class="voice bi-mic-fill" title="search with your voice"></span></div>
@@ -36,22 +36,26 @@
         <div class="recommended_tags" id="recommended_tags">
             <div class="left position-absolute"><button class="bi-chevron-left" id="move_left_button"></button></div>
             <div class="add_tags d-flex"></div>
-            <span class="right  position-absolute"><button class="bi-chevron-right" id="move_right_button"></button></span>
+            <span class="right position-absolute"><button class="bi-chevron-right" id="move_right_button"></button></span>
         </div>
         
+        <button class="expand_navibar fs-5 border-0" id="expand_navibar" >&#9776;</button>
         <div class="navibar">
-            <button class="expand_navibar fs-5 border-0 mt-2" id="expand_navibar" >&#9776;</button>
-            <button class="icon mt-2"><span class="bi-house-fill fs-5"></span>Home</button>
+            <button class="icon"><span class="bi-house-fill fs-5"></span>Home</button>
             <button class="icon"><span class="bi-lightning fs-5"></span>Shorts</button>
             <button class="icon"><span class="bi-collection-play fs-5"></span>Subscriptions</button>
             <button class="icon"><span class="bi-music-player fs-5"></span>Youtube music</button>
             <button class="icon"><span class="bi-layers fs-5"></span>Library</button>
             <button class="icon"><span class="bi-download fs-5"></span>Downloads</button>
         </div>
-
         <div class="master_container"></div>
     </div>
-    
+    <div class="bottom_navibar">
+        <button class="bottom_icon"><span class="bi-house-fill fs-5"></span>Home</button>
+        <button class="bottom_icon"><span class="bi-lightning fs-5"></span>Shorts</button>
+        <button class="bottom_icon"><span class="bi-collection-play fs-5"></span>Subscriptions</button>
+        <button class="bottom_icon"><span class="bi-layers fs-5"></span>Library</button>
+    </div>
     <div class="extended_navibar">
         <div class="container d-flex align-items-center">
             <button class="collapse_navibar fs-5 border-0 text-white">&#9776;</button>
@@ -83,7 +87,7 @@
         </div>
     </div>
     </div>
-        <script src="JSfiles/yootube.js"></script>
-        <script src="JSfiles/data.js"></script>
+    <script src="JSfiles/yootube.js"></script>
+    <script src="JSfiles/data.js"></script>
 </body>
 </html>
