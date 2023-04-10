@@ -4,47 +4,56 @@ var count = 1;
 var video_id_generator = 0;
 $(document).ready(function(){
     recommended_tags.forEach(function(e){
-        $('.add_tags').append('<div class = "tags" id =tag'+ tag_id_generator +'>'+e+'</div>');
-        $('.tags').css({'display':'flex','background-color':'rgba(255,255,255,0.1)','font-size':'14px','cursor':'pointer',
-        'margin-left':'12px','padding':'5px 15px 5px 15px','border-radius':'8px','color':'rgb(241,241,241)','min-width':'5px',
-        'height':'32px','white-space':'nowrap'});
+        $('.add_tags').append('<div class = "tags" id = tag'+ tag_id_generator +'>'+e+'</div>');
         tag_id_generator++;
     });
-    $('#tag1').css({'margin-left':'0','background-color':'rgb(241,241,241)','color':'black'});
 
-    $('.tags').hover(function(){
-    if($(this).attr('id') === 'tag1'){
-        $(this).css({'background-color':'white','transition':'.3s'});
-    }else{
-    $(this).css({'background-color':'rgb(79,79,79)','transition':'.3s'});
-    }},function(){
-    if($(this).attr('id') === 'tag1'){
-        $(this).css({'background-color':'rgb(241,241,241)','transition':'.3s'});
-    }else{
-    $(this).css({'background-color':'rgba(255,255,255,0.1)','transition':'.3s'});
-    }});
+    $('.tags').css({'display':'flex','background-color':'rgba(255,255,255,0.1)','font-size':'14px','cursor':'pointer',
+    'margin-left':'12px','padding':'5px 15px','border-radius':'8px','color':'rgb(241,241,241)','min-width':'5px',
+    'height':'32px','white-space':'nowrap'});
 
-    // var tag_scroller_limit = parseInt(($('.add_tags').width())/320);
-    var value = $('.add_tags').css('margin-left');
+    $('#tag1').addClass('active').css('margin-left','0');
+    $('.tags.active').css({'background-color':'rgb(241,241,241)','color':'black'});
+    
+    $('.tags.active').hover(()=>{
+        $(this).css({'background-color':'rgb(228, 0, 0)'});
+    })
+    $('.tags').hover(()=>{
+        $(this).css({'background-color':'rgb(255,255,255)','transition':'.3s'});
+    });
+
+    scroller === 1 ? $('.left').css('display','none') : null;
+
+    $('.tags').click((element)=>{
+        addActive = element.target.id;
+        $('.tags').removeClass('active');
+        $('#'+ addActive).addClass('active');
+        $('.active').css({'background-color':'rgb(241,241,241)','color':'black'});
+    })
+    
     $('#move_right_button').click(function(){
-        var tag_scroller_limit = parseInt((($('.add_tags').width())/(window.innerWidth-100))+1);
-        console.log($('.add_tags').clientWidth )
-        if(scroller <  tag_scroller_limit){
-            value = parseInt(value) - 320;
+        value = $('.add_tags').css('margin-left');
+        tag_scroller_limit = (parseInt($('.add_tags').width()/$('.recommended_tags').width()))*2;
+        scrollWidth = $('.recommended_tags').width()/2;
+        if(scroller <= tag_scroller_limit){
+            value = parseInt(value) - scrollWidth;
             $('.add_tags').css({'margin-left':value+'px','transition':'.1s'});
         }
         if($('#move_left_button').css('display') === 'none' && scroller == 1){
             $('#move_left_button, .left').css('display','flex');
         }
-        else if($('#move_right_button').css('display') === 'flex' && scroller == (tag_scroller_limit-1)){
+        else if($('#move_right_button').css('display') === 'flex' && scroller >= tag_scroller_limit){
             $('#move_right_button, .right').css('display','none');
         }
         scroller++;
     });
 
     $('#move_left_button').click(function(){
-        if(scroller > 1){
-            value = parseInt(value) + 320;
+        value = $('.add_tags').css('margin-left');
+        tag_scroller_limit = (parseInt($('.add_tags').width()/$('.recommended_tags').width()))*2;
+        scrollWidth = $('.recommended_tags').width()/2;
+        if(scroller > 0){
+            value = parseInt(value) + scrollWidth;
             $('.add_tags').css({'margin-left':value+'px','transition':'.1s'});
         }
         if($('#move_right_button').css('display') === 'none' && scroller == tag_scroller_limit){
@@ -55,6 +64,7 @@ $(document).ready(function(){
         }
         scroller--;
     });
+
 
     var collapsed_state;
     if(window.outerWidth > 1312){
@@ -118,8 +128,8 @@ $(document).ready(function(){
             <div class="channel_dp_container"><div class="dp_holder"><img src="'+passing_data.channel_dp+'"class="dp_image"></div></div>\
             <div class="details_container pt-1">\
                 <div class="title_button_container pt-2 pb-2"><span class="video_title">'+passing_data.video_title+'</span><button class="action_menu bi-three-dots-vertical" id="vb'+video_id_generator+'"></button></div>\
-                <span class="channel_name">'+passing_data.channel_name+'</span><br>\
-                <span class="views">'+passing_data.views+'</span></div></div>');
+                <div class="views_container"><span class="channel_name">'+passing_data.channel_name+'</span><br>\
+                <span class="views">'+passing_data.views+'</span></div></div></div>');
         video_id_generator++;
         if(count>12){return;}
         else{
