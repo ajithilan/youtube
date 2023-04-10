@@ -417,7 +417,6 @@ button.icon:first-child{
 @media (max-width:590px) and (max-device-width:767px){
     .master_container{
         grid-template-columns: 100%;
-        width: 100%;
         padding-left:0 !important;
         padding-right: 0;
     }
@@ -457,24 +456,24 @@ button.icon:first-child{
     }
 }
 
-@media (max-width : 640px) {
+@media (max-width : 767px) {
     .voice,.create,.notifications{display:none;}
 }
 
-@media (max-width:791px) and (max-device-width:767px){
+@media (max-device-width:767px),(max-width:791px){
     .navibar{ display : none;}
     .left{ left: 0px !important;}
     .right{ right : 0px;}
     .views_container{display: flex; gap:6px;}
 }
 
-@media (min-width:641px) and (max-width:791px) {
+@media (max-width:791px) and (min-device-width:768px){
     .master_container, .recommended_tags{
         padding-left: 24px !important;
     }
 }
 
-@media (min-width:512px) and (max-width:887px){
+@media (min-width:512px) and (max-width:887px) and (min-device-width:768px){
     .master_container{
         grid-template-columns: 1fr 1fr;
     }
