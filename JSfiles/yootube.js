@@ -11,25 +11,25 @@ $(document).ready(function(){
     $('.tags').css({'display':'flex','background-color':'rgba(255,255,255,0.1)','font-size':'14px','cursor':'pointer',
     'margin-left':'12px','padding':'5px 15px','border-radius':'8px','color':'rgb(241,241,241)','min-width':'5px',
     'height':'32px','white-space':'nowrap'});
-
-    $('#tag1').addClass('active').css('margin-left','0');
-    $('.tags.active').css({'background-color':'rgb(241,241,241)','color':'black'});
+    $('#tag1').css({'margin-left':'0','background-color':'rgb(241, 241, 241)','color':'black'});
     
-    $('.tags.active').hover(()=>{
-        $(this).css({'background-color':'rgb(228, 0, 0)'});
-    })
-    $('.tags').hover(()=>{
-        $(this).css({'background-color':'rgb(255,255,255)','transition':'.3s'});
+    $('.tags').hover((e)=>{
+        if(e.target.id === 'tag1'){
+            $('#'+e.target.id).css({'background-color':'rgb(255,255,255,1)','transition':'.3s'});
+        }else{
+        $('#'+e.target.id).css({'background-color':'rgb(61, 61, 61)','transition':'.3s'});
+        }
+    },(e)=>{
+        if(e.target.id === 'tag1'){
+            $('#'+e.target.id).css({'background-color':'rgb(241, 241, 241)','transition':'.3s'});
+        }else{
+        $('#'+e.target.id).css({'background-color':'rgb(255,255,255,0.1)','transition':'.3s'});
+        }
     });
 
-    scroller === 1 ? $('.left').css('display','none') : null;
-
-    $('.tags').click((element)=>{
-        addActive = element.target.id;
-        $('.tags').removeClass('active');
-        $('#'+ addActive).addClass('active');
-        $('.active').css({'background-color':'rgb(241,241,241)','color':'black'});
-    })
+    if(scroller === 1){
+        $('.left').css('display','none');
+    }
     
     $('#move_right_button').click(function(){
         value = $('.add_tags').css('margin-left');
@@ -158,21 +158,6 @@ $(document).ready(function(){
         $('#ti'+ video_hovered).css('border-radius', '12px');
         $('#ti'+ video_hovered).css({'animation':'fadeOut 0s'});
     });
-});
-
-$('.search').focusin(function(){
-    $('.search_history').css('display','flex');
-});
-
-$(window).click(function(clicked){
-    if(clicked.target.className === 'search'){
-        return;
-    }else{
-    $('.search_history').css({'display':'none'});}
-});
-
-$('.highlight').click(function(){
-    window.location.href='https://www.youtube.com/@vcodetogether3902';
 });
 
 $('.brand_div').click(function(){
